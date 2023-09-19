@@ -2,14 +2,16 @@ const router = require('express').Router();
 const notes = require('../../Develop/db/db.json');
 const { validateNote, createNewNote } = require('../../Develop/db/notes');
 
-router.get('/api/notes', (req, res) => {
+router.get('/notes', (req, res) => {
+    console.log('GET request received');
     let results = notes;
 
     res.json(results);
 });
 
 
-router.post('/api/notes', (req, res) => {
+router.post('/notes', (req, res) => {
+    console.log('POST request received');
     if(!validateNote(req.body)) {
         res.status(400).send('The note is not formatted properly');
     } else {
@@ -18,7 +20,7 @@ router.post('/api/notes', (req, res) => {
     }
 });
 
-// router.delete('/notes', (req, res) =>{
+// router.delete('/notes', (req, res) => {
 //     let note = notes;
 //     res.json(note);  
 // })
